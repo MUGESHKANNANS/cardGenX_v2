@@ -12,7 +12,7 @@ export const generatePDF = async (students: StudentData[]): Promise<Blob> => {
       const pageHeight = pdf.internal.pageSize.getHeight();
       const margin = 15;
       const cardWidth = 85; // Increased width
-      const cardHeight = 30; // Adjusted height for 5 rows
+      const cardHeight =38; // Adjusted height for 5 rows
       const categoryHeight = 8;
       const spacing = 8; // Slightly reduced spacing to accommodate larger cards
 
@@ -90,7 +90,7 @@ export const generatePDF = async (students: StudentData[]): Promise<Blob> => {
 
         // Left section text (vertical)
         pdf.setTextColor(0);
-        pdf.setFontSize(12);
+        pdf.setFontSize(16);
         pdf.setFont("helvetica", "bold");
         const yearX = x + 8;
         pdf.text("2024 - 2028", yearX, y + cardHeight - 4, {
@@ -99,10 +99,10 @@ export const generatePDF = async (students: StudentData[]): Promise<Blob> => {
         });
 
         // AD NO (vertical)
-        pdf.setFontSize(17); // Increased font size
+        pdf.setFontSize(19); // Increased font size
         pdf.setFont("helvetica", "bold");
         const adNoX = x + 18; // Adjusted position
-        pdf.text(student['AD NO'].toString(), adNoX, y + cardHeight - 5, {
+        pdf.text(student['AD NO'].toString(), adNoX, y + cardHeight - 8, {
           angle: 90,
           align: 'left'
         });
@@ -130,11 +130,11 @@ if (secondLine) {
 
         // Quota/dept
         pdf.setFontSize(12);
-        pdf.text(`${student.Quota}/${student.Dept}`, rightX, y + 19);
+        pdf.text(`${student.Quota} / ${student.Dept}`, rightX, y + 19);
 
         // COMM/TYPE
         pdf.setFontSize(12);
-        const category = `${student.COMM}${student.TYPE ? '/ ' + student.TYPE : '/'}`;
+        const category = `${student.COMM}${student.TYPE ? ' / ' + student.TYPE : ' / '}`;
         pdf.text(category, rightX, y + 25);
 
         // Add card serial number
@@ -148,7 +148,7 @@ if (secondLine) {
         pdf.setPage(j);
         pdf.setFontSize(10);
         pdf.setTextColor(0);
-        pdf.text(`Page ${j} of ${pageCount}`, pageWidth - 20, pageHeight - 10);
+        pdf.text(`Page ${j} of ${pageCount}`, pageWidth - 20, pageHeight - 8);
       }
 
       const blob = pdf.output('blob');
