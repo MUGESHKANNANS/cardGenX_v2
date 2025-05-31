@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
             rel="noopener noreferrer"
             className="text-purple-800 hover:text-purple-400 transition-all duration-200 underline underline-offset-4"
           >
-            Mugesh Kannan
+            Mugesh Kannan | Akash
           </a>{' '}
           • {new Date().getFullYear()}
         </p>
